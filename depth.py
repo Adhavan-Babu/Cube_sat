@@ -22,14 +22,11 @@ disparity = stereo.compute(imgL, imgR)
 
 # Normalize for viewing (makes it a pretty grayscale image)
 
-# 1. Normalize the disparity to the 0-255 range
 disp_vis = cv2.normalize(disparity, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U)
 
-# 2. Apply a colorful scheme
 # COLORMAP_JET: Blue is low/far, Red is high/close
 # COLORMAP_VIRIDIS: Purple is low, Yellow is high (very popular for scientific data)
 color_disparity = cv2.applyColorMap(disp_vis, cv2.COLORMAP_JET)
 
-# 3. Save or Show
 cv2.imwrite('height_map_color.jpg', color_disparity)
 print("Height map saved as height_map.jpg")
